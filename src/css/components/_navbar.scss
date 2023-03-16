@@ -1,0 +1,51 @@
+@use "../abstracts/variables" as *;
+
+/* ......../ NavBar /.......... */
+
+.navbar {
+  background: $clr-gray-800;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+.navbar-content {
+  max-width: 75rem;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $size-300;
+}
+
+.navbar-logo a {
+  text-decoration: none;
+  color: $clr-white;
+  font-family: $ff-secondary;
+  font-size: $fs-700;
+}
+
+.navbar-menu li {
+  display: inline-block;
+  font-size: $fs-600;
+  padding: 0 $size-400;
+
+  a {
+    text-decoration: none;
+    color: $clr-white;
+    font-size: $fs-600;
+    font-family: $ff-secondary;
+
+    &:hover,
+    &:focus {
+      color: $clr-red;
+    }
+  }
+}
+
+.hamburger-ico {
+  display: none;
+}

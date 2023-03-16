@@ -1,0 +1,24 @@
+@use "../abstracts/variables" as *;
+
+/* ......../ Footer /.......... */
+
+.footer {
+    background: $clr-gray-800;
+    padding: $size-400;
+    color: $clr-white;
+    font-family: $ff-primary;
+    text-align: center;
+}
+
+.scroll-up {
+    position: fixed;
+    right: 0.5%;
+    bottom: 3%;
+    cursor: pointer;
+
+    a {
+        font-size: $fs-800;
+        text-decoration: none;
+        color: $clr-red;
+    }
+}
