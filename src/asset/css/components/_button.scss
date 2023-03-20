@@ -1,0 +1,48 @@
+@use "../abstracts/variables" as *;
+
+/* ......../ Button /.......... */
+
+%btn {
+    border: none;
+    padding: $size-300;
+    min-width: $size-700;
+    border-radius: $size-100;
+    font-family: $ff-secondary;
+    min-width: 6rem;
+
+    &:hover {
+        background: $clr-yellow-400;
+        transform: scale(.98);
+    }
+  }
+
+.btn-primary {
+    @extend %btn;
+    background: $clr-yellow;
+    color: $clr-white;
+}
+
+.btn-loadmore--loading {
+    @extend %btn;
+    &.load-more--loading {
+        animation: rotate 1.5s linear infinite;
+        animation-delay: 0.2s;
+        background-color: transparent;
+        border: 0.3em solid #e1e1e1;
+        border-radius: 1.5em;
+        border-top-color: #444;
+        box-sizing: border-box;
+        height: 3em;
+        color: transparent;
+        padding: 0;
+        pointer-events: none;
+        width: 3em;
+      }
+
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+}

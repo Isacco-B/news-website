@@ -1,0 +1,131 @@
+@use "../abstracts/variables" as *;
+
+
+/* ......../ NavBar /.......... */
+
+@media (max-width: 786px) {
+
+  .navbar-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: $clr-yellow;
+    height: 0vh;
+    overflow: hidden;
+    transition: all 1s cubic-bezier(.215, .61, .335, 1);
+
+    li {
+      display: block;
+      text-align: center;
+      padding: $size-200 0;
+      margin: auto;
+
+      a:hover,
+      a:focus {
+        color: $clr-gray-800;
+        border-bottom: 1px solid $clr-gray-800;
+      }
+    }
+  }
+
+  .navbar-menu-open {
+    width: 100%;
+    padding: 30px;
+    height: 30vh;
+  }
+
+  .hamburger-ico {
+    display: block;
+    padding-right: $size-300;
+  }
+
+  .icon-close {
+    display: none;
+  }
+
+  .icon-hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .hamburger-open-false {
+    display: none;
+  }
+
+  .hamburger-open-true {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+
+/* ......../ Project /.......... */
+
+//Tablet
+@media (min-width: 550px) {
+  .project-container {
+    padding: $size-300 $size-700;
+  }
+
+  .project-title {
+    font-size: $fs-750;
+  }
+
+  .project-info {
+
+    h2 {
+      font-size: $fs-750;
+    }
+
+    p {
+      font-size: $fs-400;
+    }
+  }
+
+  .project-btn {
+    margin-right: $size-600;
+  }
+}
+
+//Desktop
+@media (min-width: 875px) {
+
+  .project-container {
+    max-width: 80rem;
+    margin: auto;
+  }
+
+  .project-title {
+    font-size: $fs-750;
+  }
+
+  .project {
+    min-width: 75rem;
+    min-height: 20.625rem;
+  }
+
+  .project-container-left {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .project-container-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .project-info {
+    h2 {
+      font-size: $fs-750;
+    }
+
+    p {
+      font-size: $fs-700;
+    }
+  }
+
+  .project-btn {
+    margin-right: $size-600;
+  }
+}
