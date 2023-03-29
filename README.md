@@ -6,8 +6,8 @@ News Websiste made for Start2Impact University.
 ## Screenshots
 
 <p align="center">
-    <img width="80%" src="./asset/img/mobile.png">
-    <img width="80%" src="./asset/img/desktop.png">
+    <img width="80%" src="./src/asset/img/mobile.png">
+    <img width="80%" src="./src/asset/img/desktop.png">
 </p>
 
 ## Demo
