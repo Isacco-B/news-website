@@ -1,72 +1,114 @@
-import '../css/style.scss'
+import "../css/style.scss";
+import axios from "axios";
+const _ = require("lodash");
 
-const axios = require("axios");
+const API_LATEST = process.env.API_LATEST;
+const API_BEST = process.env.API_BEST;
+const API_JOB = process.env.API_JOB;
+const API_SHOW = process.env.API_SHOW;
+const API_URL_ID = process.env.API_URL_ID;
 
-const NEWS_PER_PAGE = 10;
-const newsContainer = document.querySelector('.project-container')
-const loadMoreBtn = document.querySelector('.btn-loadmore');
+const newsContainer = document.querySelector(".news-container");
+const newsTitle = document.querySelector(".news-title");
+const loadMoreBtn = document.getElementById("btn-loadmore");
+const spinner = document.getElementById("loader");
+const navBarMenu = document.querySelector(".navbar-menu");
 
-let newsData = [];
-let currentPage = 0;
+window.addEventListener("load", () => {
+  spinnerLoader();
+});
 
+navBarMenu.addEventListener("click", function (e) {
+  const newsType = e.target.id;
+  switch (newsType) {
+    case "latest":
+      newsContainer.innerHTML = "";
+      newsTitle.innerHTML = "LatestNews";
+      count = 0;
+      spinnerLoader();
+      fetchNewsId(API_LATEST);
+      break;
+    case "best":
+      newsContainer.innerHTML = "";
+      newsTitle.innerHTML = "BestNews";
+      count = 0;
+      spinnerLoader();
+      fetchNewsId(API_BEST);
+      break;
+    case "job":
+      newsContainer.innerHTML = "";
+      newsTitle.innerHTML = "JobNews";
+      count = 0;
+      spinnerLoader();
+      fetchNewsId(API_JOB);
+      break;
+    case "show":
+      newsContainer.innerHTML = "";
+      newsTitle.innerHTML = "ShowNews";
+      count = 0;
+      spinnerLoader();
+      fetchNewsId(API_SHOW);
+      break;
+    default:
+      break;
+  }
+});
 
-function renderNews(start, end) {
-  const newsHtml = newsData
-    .slice(start, end)
-    .map((newsItem) => {
-      const time = new Date(newsItem.time * 1000).toLocaleString();
-      return `
-        <div class='project-container-right'>
-            <div class="project">
-            <div class="project-info">
-                <h2> ${newsItem.title} </h2>
-                <p> ${time} </p>
-                <p> By ${newsItem.by} </p>
+let count = 0;
+let newsId = [];
 
-                <a href="${newsItem.url}" target="_blank">
-                <button class="btn-primary project-btn">ReadMore</button>
-                </a>
-            </div>
-            </div>
-        </div>
-      `;
+async function fetchNewsId(api) {
+  axios
+    .get(api)
+    .then((response) => {
+      newsId = _.get(response, "data");
+      fetchNews();
     })
-    .join("");
+    .catch((error) => console.log(error));
+}
+
+async function fetchNews() {
+  newsId.slice(count, (count += 10)).forEach((id) => {
+    axios
+      .get(`${API_URL_ID}/${id}.json`)
+      .then((response) => {
+        let newsData = _.get(response, "data");
+        renderNews(newsData);
+      })
+      .catch((error) => console.log(error));
+  });
+}
+
+function renderNews(data) {
+  const time = new Date(data.time * 1000).toLocaleString();
+  const newsHtml = `
+            <div class="news">
+              <div class="news-info">
+                  <h2> ${data.title} </h2>
+                  <p> ${time} </p>
+                  <p> By ${data.by} </p>
+                  <a href="${data.url}" target="_blank">
+                  <button class="btn-primary">ReadMore</button>
+                  </a>
+              </div>
+            </div>
+          `;
   newsContainer.innerHTML += newsHtml;
 }
 
-let newsId = []
-// Chiamata all'API per ottenere i primi 10 nuovi articoli
-axios
-  .get("https://hacker-news.firebaseio.com/v0/newstories.json")
-  .then((response) => {
-    const newsId = response.data;
-    const requests = newsId.map((id) =>
-      axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-    );
-    axios
-      .all(requests)
-      .then((responses) => {
-        console.log(responses)
-        newsData = responses.map((response) => response.data);
-        renderNews(0, NEWS_PER_PAGE);
-        currentPage += NEWS_PER_PAGE;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
-function loadNews(){
-    axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+function spinnerLoader() {
+  spinner.classList.add("loader");
+  setTimeout(() => {
+    spinner.classList.remove("loader");
+  }, 2000);
 }
+
 loadMoreBtn.addEventListener("click", () => {
-  renderNews(currentPage, currentPage + NEWS_PER_PAGE);
-  currentPage += NEWS_PER_PAGE;
-  if (currentPage >= newsData.length) {
+  spinnerLoader();
+  fetchNews();
+  if (count >= newsId.length) {
     loadMoreBtn.style.display = "none";
   }
 });
+
+fetchNewsId(API_LATEST);

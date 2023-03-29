@@ -2,7 +2,7 @@
   "name": "isacco-bertoli-javascript-advanced",
   "version": "1.0.0",
   "description": "Start2Impact Javascript Advanced Project",
-  "main": "index.js",
+  "main": "entry.js",
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",

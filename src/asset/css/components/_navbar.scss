@@ -32,18 +32,15 @@
   display: inline-block;
   font-size: $fs-600;
   padding: 0 $size-400;
-
-  a {
-    text-decoration: none;
-    color: $clr-white;
-    font-size: $fs-600;
-    font-family: $ff-secondary;
+  text-decoration: none;
+  color: $clr-white;
+  font-size: $fs-600;
+  font-family: $ff-secondary;
 
     &:hover,
     &:focus {
       color: $clr-yellow;
     }
-  }
 }
 
 .hamburger-ico {

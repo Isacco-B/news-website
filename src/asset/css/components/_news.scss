@@ -2,11 +2,12 @@
 
 /* ......../ Projects /.......... */
 
-.project-container {
+.news-container {
     padding: $size-300;
+    margin: auto;
 }
 
-.project-title {
+.news-title {
     padding: 2rem 0;
     font-family: $ff-primary;
     color: $clr-gray-800;
@@ -16,19 +17,15 @@
     margin-top: $size-600;
 }
 
-.project {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $size-400;
+.news {
     background: $clr-white;
     padding: $size-600;
     border-radius: $size-200;
     box-shadow: 0px 5px 15px $clr-gray-200;
-    margin-bottom: $size-700;
+    margin-bottom: $size-400;
 }
 
-.project-info {
+.news-info {
     text-align: center;
     margin: auto;
 
@@ -43,10 +40,6 @@
         color: $clr-gray-400;
         margin-bottom: $size-600;
     }
-}
-
-.project-btn {
-    margin-bottom: $size-300;
 }
 
 .load-more {

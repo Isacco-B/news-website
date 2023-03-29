@@ -21,8 +21,8 @@
       padding: $size-200 0;
       margin: auto;
 
-      a:hover,
-      a:focus {
+      &:hover,
+      &:focus {
         color: $clr-gray-800;
         border-bottom: 1px solid $clr-gray-800;
       }
@@ -60,19 +60,20 @@
 }
 
 
-/* ......../ Project /.......... */
+/* ......../ News /.......... */
 
 //Tablet
 @media (min-width: 550px) {
-  .project-container {
+  .news-container {
     padding: $size-300 $size-700;
+    margin: auto;
   }
 
-  .project-title {
+  .news-title {
     font-size: $fs-750;
   }
 
-  .project-info {
+  .news-info {
 
     h2 {
       font-size: $fs-750;
@@ -83,39 +84,22 @@
     }
   }
 
-  .project-btn {
-    margin-right: $size-600;
-  }
 }
 
 //Desktop
 @media (min-width: 875px) {
 
-  .project-container {
+  .news-container {
     max-width: 80rem;
     margin: auto;
   }
 
-  .project-title {
+  .news-title {
     font-size: $fs-750;
+    text-align: center;
   }
 
-  .project {
-    min-width: 75rem;
-    min-height: 20.625rem;
-  }
-
-  .project-container-left {
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .project-container-right {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .project-info {
+  .news-info {
     h2 {
       font-size: $fs-750;
     }
@@ -125,7 +109,4 @@
     }
   }
 
-  .project-btn {
-    margin-right: $size-600;
-  }
 }
