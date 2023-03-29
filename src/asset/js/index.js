@@ -2,22 +2,26 @@ import "../css/style.scss";
 import axios from "axios";
 const _ = require("lodash");
 
+// These constants hold the API endpoints
 const API_LATEST = process.env.API_LATEST;
 const API_BEST = process.env.API_BEST;
 const API_JOB = process.env.API_JOB;
 const API_SHOW = process.env.API_SHOW;
 const API_URL_ID = process.env.API_URL_ID;
 
+// These constants hold elements selected from the DOM
 const newsContainer = document.querySelector(".news-container");
 const newsTitle = document.querySelector(".news-title");
 const loadMoreBtn = document.getElementById("btn-loadmore");
 const spinner = document.getElementById("loader");
 const navBarMenu = document.querySelector(".navbar-menu");
 
+// This event listener triggers the spinner loader when the page loads
 window.addEventListener("load", () => {
   spinnerLoader();
 });
 
+// This event listener handles clicks on the navbar menu
 navBarMenu.addEventListener("click", function (e) {
   const newsType = e.target.id;
   switch (newsType) {
@@ -57,6 +61,7 @@ navBarMenu.addEventListener("click", function (e) {
 let count = 0;
 let newsId = [];
 
+// This function fetches news IDs from the API endpoint
 async function fetchNewsId(api) {
   axios
     .get(api)
@@ -67,6 +72,7 @@ async function fetchNewsId(api) {
     .catch((error) => console.log(error));
 }
 
+// This function fetches news data from the API and call the renderNews function
 async function fetchNews() {
   newsId.slice(count, (count += 10)).forEach((id) => {
     axios
@@ -79,6 +85,7 @@ async function fetchNews() {
   });
 }
 
+// This function renders individual news items on the page
 function renderNews(data) {
   const time = new Date(data.time * 1000).toLocaleString();
   const newsHtml = `
@@ -96,6 +103,7 @@ function renderNews(data) {
   newsContainer.innerHTML += newsHtml;
 }
 
+// This function adds and removes the spinner loader class to show/hide the spinner
 function spinnerLoader() {
   spinner.classList.add("loader");
   setTimeout(() => {
@@ -103,6 +111,7 @@ function spinnerLoader() {
   }, 2000);
 }
 
+// Fetches more news when the "Load More" button is clicked.
 loadMoreBtn.addEventListener("click", () => {
   spinnerLoader();
   fetchNews();
