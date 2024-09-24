@@ -1,7 +1,6 @@
-# News Website
+# News-website
 
-Javascript Advanced Project.
-News Websiste made for Start2Impact University.
+- News-Website is a platform that displays the latest and most popular news, built using only HTML, CSS, and JavaScript..
 
 ## Screenshots
 
