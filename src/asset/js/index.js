@@ -3,11 +3,11 @@ import axios from "axios";
 const _ = require("lodash");
 
 // These constants hold the API endpoints
-const API_LATEST = process.env.API_LATEST;
-const API_BEST = process.env.API_BEST;
-const API_JOB = process.env.API_JOB;
-const API_SHOW = process.env.API_SHOW;
-const API_URL_ID = process.env.API_URL_ID;
+const API_LATEST = "https://hacker-news.firebaseio.com/v0/newstories.json";
+const API_BEST = "https://hacker-news.firebaseio.com/v0/beststories.json";
+const API_JOB = "https://hacker-news.firebaseio.com/v0/jobstories.json";
+const API_SHOW = "https://hacker-news.firebaseio.com/v0/showstories.json";
+const API_URL_ID = "https://hacker-news.firebaseio.com/v0/item/";
 
 // These constants hold elements selected from the DOM
 const newsContainer = document.querySelector(".news-container");
